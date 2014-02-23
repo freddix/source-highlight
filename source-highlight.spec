@@ -1,7 +1,7 @@
 Summary:	GNU Source Highlight
 Name:		source-highlight
 Version:	3.1.7
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		Applications/Publishing
 Source0:	http://ftp.gnu.org/gnu/src-highlite/%{name}-%{version}.tar.gz
