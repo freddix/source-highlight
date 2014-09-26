@@ -1,7 +1,7 @@
 Summary:	GNU Source Highlight
 Name:		source-highlight
 Version:	3.1.7
-Release:	2
+Release:	3
 License:	GPL v3+
 Group:		Applications/Publishing
 Source0:	http://ftp.gnu.org/gnu/src-highlite/%{name}-%{version}.tar.gz
@@ -34,6 +34,16 @@ Requires:	%{name}-libs = %{version}-%{release}
 %description devel
 Header file for srchlite library.
 
+%package -n bash-completion-%{name}
+Summary:	BASH auto-complete site functions
+Group:		Documentation
+Requires:	%{name} = %{version}-%{release}
+Requires:	bash
+
+%description -n bash-completion-%{name}
+BASH auto-complete site functions.
+
+
 %prep
 %setup -q
 
@@ -45,7 +55,7 @@ Header file for srchlite library.
 %{__autoconf}
 %configure \
 	--disable-static	\
-	--with-boost-libdir=%{_libdir}
+	--with-bash-completion=%{_datadir}/bash-completion/completions
 %{__make}
 
 %install
@@ -54,6 +64,8 @@ install -d $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 mv -f $RPM_BUILD_ROOT%{_docdir}/%{name}/* \
 	$RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
@@ -77,6 +89,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/cpp2html
 %attr(755,root,root) %{_bindir}/java2html
 %attr(755,root,root) %{_bindir}/source-highlight
+%attr(755,root,root) %{_bindir}/source-highlight-esc.sh
 %attr(755,root,root) %{_bindir}/source-highlight-settings
 %attr(755,root,root) %{_bindir}/src-hilite-lesspipe.sh
 %{_mandir}/man1/check-regexp.1*
@@ -95,7 +108,10 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libsource-highlight.so
-%{_libdir}/libsource-highlight.la
 %{_includedir}/srchilite
 %{_pkgconfigdir}/source-highlight.pc
+
+%files -n bash-completion-%{name}
+%attr(755,root,root)
+%{_datadir}/bash-completion/completions/*
 
