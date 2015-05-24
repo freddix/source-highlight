@@ -1,11 +1,11 @@
 Summary:	GNU Source Highlight
 Name:		source-highlight
-Version:	3.1.7
-Release:	3
+Version:	3.1.8
+Release:	1
 License:	GPL v3+
 Group:		Applications/Publishing
 Source0:	http://ftp.gnu.org/gnu/src-highlite/%{name}-%{version}.tar.gz
-# Source0-md5:	0ff81588d3536b4c4e571122ba940595
+# Source0-md5:	3243470706ef5fefdc3e43b5306a4e41
 URL:		http://www.gnu.org/software/src-highlite/
 BuildRequires:	automake
 BuildRequires:	boost-devel
